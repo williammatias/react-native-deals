@@ -17,6 +17,7 @@ export default class App extends Component<{}> {
         deals: [],
         dealsFormSearch: [],
         currentDealId: null,
+        activeSearchTerm: '',
     }
 
     setCurrentDeal = (dealId) => {
@@ -57,7 +58,7 @@ export default class App extends Component<{}> {
         if (searchTerm) {
             dealsFormSearch = await ajax.fetchDealsSearchResults(searchTerm)
         }
-        this.setState({dealsFormSearch})
+        this.setState({dealsFormSearch, activeSearchTerm: searchTerm})
     }
 
     currentDeal = () => {
@@ -80,7 +81,8 @@ export default class App extends Component<{}> {
         if (this.state.deals.length > 0) {
             return (
                 <View style={styles.main}>
-                    <SearchBar searchDeals={this.searchDeals}/>
+                    <SearchBar searchDeals={this.searchDeals}
+                               initialSearchTerm={this.state.activeSearchTerm}/>
                     <DealList
                         deals={dealsToDisplay}
                         onItemPress={this.setCurrentDeal}

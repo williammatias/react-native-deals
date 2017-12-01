@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {Animated, Linking, Dimensions, Image, PanResponder, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native'
+import {Animated, Linking, Dimensions, Image, ScrollView, PanResponder, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native'
 import {priceDisplay} from '../util'
 import ajax from '../ajax'
 
@@ -74,7 +74,7 @@ export default class DealDetail extends React.Component {
 
         const {deal} = this.state
         return (
-            <View style={styles.deal}>
+            <ScrollView style={styles.deal}>
                 <TouchableOpacity onPress={this.props.onBack}>
                     <Text style={styles.backLink}>Back</Text>
                 </TouchableOpacity>
@@ -101,7 +101,7 @@ export default class DealDetail extends React.Component {
                     <Text>{deal.description}</Text>
                 </View>
                 <Button title="Buy this deal!" onPress={this.openDealUrl} />
-            </View>
+            </ScrollView>
         )
     }
 }
